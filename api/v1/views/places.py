@@ -93,6 +93,7 @@ def post_place(city_id):
     return make_response(jsonify(instance.to_dict()), 201)
 
 
+
 @app_views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)
 @swag_from('documentation/place/put_place.yml', methods=['PUT'])
 def put_place(place_id):
