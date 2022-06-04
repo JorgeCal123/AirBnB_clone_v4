@@ -27,6 +27,21 @@ def get_places(city_id):
 
     return jsonify(places)
 
+@app_views.route('/places_search', methods=['POST'],
+                 strict_slashes=False)
+def get_places():
+    """
+    Retrieves the list of all Place objects of a City
+    """
+    places = storage.all(Place)
+
+    if not city:
+        abort(404)
+
+    places = [place.to_dict() for place in city.places]
+
+    return jsonify(places)
+
 
 @app_views.route('/places/<place_id>', methods=['GET'], strict_slashes=False)
 @swag_from('documentation/place/get_place.yml', methods=['GET'])
