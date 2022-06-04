@@ -11,12 +11,15 @@ $(document).ready(function () {
         $(".amenities > h4").text(Object.keys(dict_amenities).join(', '))
 
     });
-});
+    $.ajax({
 
-$.get( "http://0.0.0.0:5001/api/v1/status/", function( data ) {
-  if (data.status === "OK") {
-      $("#api_status").addclass(".available")
-  }else{
-      $("#api_status").removeclass(".available")
-  }
+		url: 'http://localhost:5001/api/v1/status/',
+		success: function (data) {
+			if (data.status === 'OK') {
+				$('#api_status').addClass('available');
+			} else {
+				$('#api_status').removeClass('available');
+			}
+		}
+	});
 });
